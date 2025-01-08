@@ -1,6 +1,6 @@
 {
   "name": "vietqr-gen",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "QR code generator with VietQR logo support",
   "main": "index.js",
   "scripts": {
