@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600">
+    <rect width="100%" height="100%" fill="white"/>
+    <g id="qrcode" transform="translate(50,50)">
+        <!-- QR code will be inserted here -->
+    </g>
+</svg>

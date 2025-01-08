@@ -1,0 +1,19 @@
+{
+  "name": "qr-gen",
+  "version": "1.0.0",
+  "description": "QR code generator",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@svgdotjs/svg.js": "^3.2.0",
+    "commander": "^11.1.0",
+    "csv-parse": "^5.5.2",
+    "fs-extra": "^11.1.1",
+    "qrcode": "^1.5.3",
+    "svgdom": "^0.1.19",
+    "xml-js": "^1.6.11"
+  },
+  "type": "module"
+}
