@@ -1,16 +1,22 @@
 {
-  "name": "qr-gen",
+  "name": "vietqr-gen",
   "version": "1.0.0",
-  "description": "QR code generator",
+  "description": "QR code generator with VietQR logo support",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
+  "bin": {
+    "vietqr-gen": "./index.js"
+  },
   "dependencies": {
     "@svgdotjs/svg.js": "^3.2.0",
+    "canvas": "^2.11.2",
     "commander": "^11.1.0",
     "csv-parse": "^5.5.2",
     "fs-extra": "^11.1.1",
+    "jsdom": "^25.0.1",
+    "qr-code-styling": "^1.9.0",
     "qrcode": "^1.5.3",
     "svgdom": "^0.1.19",
     "xml-js": "^1.6.11"

@@ -1,6 +1,6 @@
-# QR Code Generator
+# VietQR Generator
 
-A Node.js command-line tool that generates QR codes from CSV data and inserts them into SVG templates.
+A Node.js command-line tool that generates QR codes with VietQR logo from CSV data and inserts them into SVG templates.
 
 ## Installation
 
@@ -22,13 +22,13 @@ node index.js -c <csv-file> -t <template-file> -o <output-directory>
 
 ### CSV Format
 
-The CSV file should contain at least one of these columns:
+The CSV file should contain these columns:
 - `url` or `GenQR`: The content to encode in the QR code
-- `id` (optional): Used for naming the output files
+- `STK`: Account number (used for naming the output files)
 
 Example CSV:
 ```csv
-id,GenQR
+STK,GenQR
 1,https://example.com/1
 2,https://example.com/2
 ```
