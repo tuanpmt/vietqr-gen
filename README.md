@@ -4,6 +4,12 @@ A Node.js command-line tool that generates QR codes with VietQR logo from CSV da
 
 ## Installation
 
+Install globally:
+```bash
+npm install -g vietqr-generator
+```
+
+Install locally:
 ```bash
 npm install
 ```
@@ -11,7 +17,7 @@ npm install
 ## Usage
 
 ```bash
-node index.js -c <csv-file> -t <template-file> -o <output-directory>
+node index.js -c <csv-file> -t <template-file> -o <output-directory> --logo <logo-file>
 ```
 
 ### Parameters
@@ -19,6 +25,7 @@ node index.js -c <csv-file> -t <template-file> -o <output-directory>
 - `-c, --csv`: Path to the CSV file containing the data
 - `-t, --template`: Path to the SVG template file
 - `-o, --output`: Directory where generated SVG files will be saved
+- `--logo`: Path to the logo file to be inserted into the QR code
 
 ### CSV Format
 
@@ -46,7 +53,7 @@ The SVG template should include a group element with `id="qrcode"` where the QR 
 ## Example
 
 ```bash
-node index.js -c ./data.csv -t ./template.svg -o ./output
+node index.js -c ./data.csv -t ./template.svg -o ./output --logo ./logo.png
 ```
 
 This will:
