@@ -26,10 +26,11 @@ QRCodeStyling.prototype.createCanvas = function() {
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const defaultLogoPath = join(__dirname, 'vietqr.svg');
+const defaultTemplatePath = join(__dirname, 'template.svg');
 
 program
   .requiredOption('-c, --csv <path>', 'Path to CSV file')
-  .requiredOption('-t, --template <path>', 'Path to SVG template')
+  .option('-t, --template <path>', 'Path to SVG template', defaultTemplatePath)
   .requiredOption('-o, --output <path>', 'Output directory')
   .option('-l, --logo <path>', 'Logo path (use "none" for no logo, defaults to vietqr)', defaultLogoPath)
   .parse(process.argv);

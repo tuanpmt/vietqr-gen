@@ -1,66 +1,94 @@
 # VietQR Generator
 
-A Node.js command-line tool that generates QR codes with VietQR logo from CSV data and inserts them into SVG templates.
+A command-line tool for generating VietQR codes and embedding them into SVG templates.
 
 ## Installation
 
-Install globally:
+Install globally using npm:
 ```bash
-npm install -g vietqr-generator
-```
-
-Install locally:
-```bash
-npm install
+npm install -g vietqr-gen
 ```
 
 ## Usage
 
+Once installed globally, you can run the tool using:
 ```bash
-node index.js -c <csv-file> -t <template-file> -o <output-directory> --logo <logo-file>
+vietqr-gen -c <csv-file> [-t <template-file>] -o <output-directory>
 ```
 
 ### Parameters
 
-- `-c, --csv`: Path to the CSV file containing the data
-- `-t, --template`: Path to the SVG template file
-- `-o, --output`: Directory where generated SVG files will be saved
-- `--logo`: Path to the logo file to be inserted into the QR code
+- `-c, --csv`: CSV file with bank account and VietQR data
+- `-t, --template`: SVG template file (defaults to template.svg in package directory)
+- `-o, --output`: Output directory for generated files
+- `-l, --logo`: Optional logo path:
+  - Default: Built-in VietQR logo
+  - Use `-l none` to generate QR codes without logo
+  - Use `-l path/to/logo.svg` for custom logo
 
 ### CSV Format
 
-The CSV file should contain these columns:
-- `url` or `GenQR`: The content to encode in the QR code
-- `STK`: Account number (used for naming the output files)
+Required CSV columns:
+- `ID`: Identifier (optional)
+- `STK`: Bank account reference code
+- `GenQR`: VietQR data string
 
 Example CSV:
 ```csv
-STK,GenQR
-1,https://example.com/1
-2,https://example.com/2
+ID,STK,GenQR
+BIDV1,V3CASLRPR13MT76,00020101021138590010A000000727012900069704180115V3CASLRPR13MT760208QRIBFTTA53037045802VN6304ABD7
+BIDV2,V3CASLHRE4GFPY5,00020101021138590010A000000727012900069704180115V3CASLHRE4GFPY50208QRIBFTTA53037045802VN6304B5EA
 ```
 
-### SVG Template
+### Template Format
 
-The SVG template should include a group element with `id="qrcode"` where the QR code will be inserted:
-
+Your SVG template must contain:
 ```xml
-<g id="qrcode" transform="translate(50,50)">
-    <!-- QR code will be inserted here -->
+<g id="qrcode">
+    <rect width="1299" height="1299" x="642.5" y="1091.5" />
 </g>
 ```
 
-## Example
+#### Exporting from Figma
 
+To create a compatible template from Figma:
+
+1. Create a frame with your desired design
+2. Add a rectangle where you want the QR code to appear
+3. Group the rectangle and name the group "qrcode"
+4. Export as SVG
+
+![Figma Export Guide](guide-figma.png)
+
+## Quick Start
+
+1. Save your VietQR data in a CSV file (e.g., `data.csv`)
+2. Run with default template:
 ```bash
-node index.js -c ./data.csv -t ./template.svg -o ./output --logo ./logo.png
+vietqr-gen -c data.csv -o output
 ```
 
-This will:
-1. Read each row from data.csv
-2. Generate a QR code for each URL/data
-3. Insert the QR code into the template
-4. Save the resulting SVG files in the output directory
+3. Or use your own template:
+```bash
+vietqr-gen -c data.csv -t custom-template.svg -o output
+```
+
+4. Run with desired logo option:
+```bash
+# Use default template
+vietqr-gen -c data.csv -o output
+
+# Specify custom template
+vietqr-gen -c data.csv -t custom-template.svg -o output
+
+# No logo
+vietqr-gen -c data.csv -o output -l none
+
+# Custom logo
+vietqr-gen -c data.csv -o output -l custom-logo.svg
+```
+
+Generated files will be named using the STK values (e.g., `V3CASLRPR13MT76.svg`).
 
 ## Dependencies
 
@@ -68,3 +96,9 @@ This will:
 - csv-parse: CSV file processing
 - commander: Command-line interface
 - fs-extra: File system operations
+
+## License
+
+MIT License - Copyright (c) 2024 TuanPM
+
+See [LICENSE](LICENSE) for details.
